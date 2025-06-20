@@ -3,7 +3,7 @@ import './App.css';
 import MainContainer from './components/MainContainer';
 
 /**
- * App: EcoCraftify's main entry point.
+ * App: Trash2Treasure's main entry point.
  * Contains the navbar and the modular MainContainer root.
  */
 function App() {
@@ -13,7 +13,7 @@ function App() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <div className="logo">
-              <span className="logo-symbol">*</span> EcoCraftify
+              <span className="logo-symbol" role="img" aria-label="leaf">🌿</span> Trash2Treasure
             </div>
             <button className="btn">Profile</button>
           </div>
