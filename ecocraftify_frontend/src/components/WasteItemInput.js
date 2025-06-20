@@ -211,6 +211,32 @@ function WasteItemInput() {
                     ))}
                   </div>
                 )}
+
+                {/* Step-by-step instructions */}
+                {Array.isArray(idea.steps) && idea.steps.length > 0 && (
+                  <ol
+                    style={{
+                      marginTop: 16,
+                      marginBottom: 0,
+                      paddingLeft: 22,
+                      color: "var(--primary-green)",
+                      fontWeight: 500,
+                      fontSize: "0.99em",
+                      lineHeight: 1.6,
+                      background: "#f5ffef",
+                      borderRadius: 7,
+                      boxShadow: "0 0.5px 3.5px #c9eda522",
+                      border: "1px solid var(--border-color)",
+                    }}
+                  >
+                    {idea.steps.map((step, stepIdx) => (
+                      <li key={stepIdx} style={{ marginBottom: 3, fontWeight: 400 }}>
+                        {step}
+                      </li>
+                    ))}
+                  </ol>
+                )}
+
                 {/* Save to MyCreations action */}
                 <button
                   className="btn"
