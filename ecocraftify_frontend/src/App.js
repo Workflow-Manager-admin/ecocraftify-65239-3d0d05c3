@@ -6,7 +6,6 @@ import UserProfile from './components/UserProfile';
 import AnimatedTree from './components/AnimatedTree';
 import MyCreations from './components/MyCreations';
 import EcoTips from './components/EcoTips';
-import SurpriseMe from './components/SurpriseMe';
 import { CreationsProvider } from './components/CreationsContext';
 
 /**
@@ -67,7 +66,6 @@ function App() {
     { id: "input", label: "Waste Item Input" },
     { id: "creations", label: "My Creations" },
     { id: "eco-tips", label: "Eco Tips / Learn" },
-    { id: "surprise", label: "Surprise Me" },
     { id: "profile", label: "User Profile" }
   ];
 
@@ -163,11 +161,6 @@ function App() {
                   Not wrapped in an extra container to avoid double padding.
                 */}
                 {React.createElement(require('./components/EcoTips').default)}
-              </section>
-            )}
-            {currentView === "surprise" && (
-              <section style={{marginTop:70, paddingTop:0, background:'none', boxShadow:'none', border:'none', minHeight: 420}}>
-                <SurpriseMe />
               </section>
             )}
           </div>
