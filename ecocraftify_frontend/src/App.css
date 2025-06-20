@@ -203,6 +203,71 @@ section {
   100% { transform: rotate(13deg);}
 }
 
+/* --- Animated ECO Tree (home) --- */
+.ecocraftify-animated-tree-sidebar {
+  pointer-events: none;
+  user-select: none;
+  min-width: 86px;
+  max-width: 120px;
+}
+
+.animated-tree-svg .animated-tree-trunk {
+  /* gentle sway animation on trunk, back-and-forth */
+  transform-origin: 44px 80px;
+  animation: treeTrunkSway 7s ease-in-out infinite alternate;
+}
+.animated-tree-svg .animated-tree-branch {
+  /* slight movement to the branches */
+  transform-origin: 44px 80px;
+  animation: treeBranchSway 6s ease-in-out infinite alternate;
+}
+
+.animated-tree-svg .animated-tree-leaves-main,
+.animated-tree-svg .animated-tree-leaf {
+  /* subtle "breathing" scale effect */
+  transform-origin: 44px 54px;
+  animation: treeLeavesBreath 5.2s ease-in-out infinite alternate;
+}
+.animated-tree-svg .branch-1-leaf { animation-delay: 0.3s;}
+.animated-tree-svg .branch-2-leaf { animation-delay: 1.7s;}
+.animated-tree-svg .branch-3-leaf { animation-delay: 1.0s;}
+.animated-tree-svg .branch-4-leaf { animation-delay: 2.5s;}
+
+/* Keyframes for eco tree animations */
+@keyframes treeTrunkSway {
+  0%   { transform: rotate(-1deg);}
+  30%  { transform: rotate(2.2deg);}
+  63%  { transform: rotate(-1.5deg);}
+  100% { transform: rotate(1.4deg);}
+}
+@keyframes treeBranchSway {
+  0%   { transform: rotate(-3deg);}
+  42%  { transform: rotate(3.1deg);}
+  100% { transform: rotate(-1.3deg);}
+}
+@keyframes treeLeavesBreath {
+  0%   { transform: scale(1) }
+  38%  { transform: scale(1.06)}
+  76%  { transform: scale(0.97)}
+  100% { transform: scale(1)}
+}
+
+@media (max-width: 900px) {
+  .main-container-ecocraftify {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .main-container-ecocraftify > section {
+    min-width: unset;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  /* Hide visually prominent tree on mobile (avoid covering hero content) */
+  .ecocraftify-animated-tree-sidebar {
+    display: none !important;
+  }
+}
+
 @media (max-width: 900px) {
   .main-container-ecocraftify {
     flex-direction: column;

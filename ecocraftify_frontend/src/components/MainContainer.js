@@ -1,5 +1,7 @@
+// Animated tree visual for home sidebar
 import React from "react";
 import "../App.css";
+import AnimatedTree from "./AnimatedTree";
 
 /**
  * Top-level SVG assets for plant branding/animations
@@ -57,16 +59,24 @@ function MainContainer({
           style={{
             position: "relative",
             background: "#f5ffef",
-            borderRadius: "0 0 16px 16px"
+            borderRadius: "0 0 16px 16px",
+            minHeight: 480,
+            overflow: "visible",
           }}
         >
-          <div style={{ position: "absolute", left: 0, top: -25, zIndex: 0 }}>
+          {/* Large animated tree for sidebar visual */}
+          <AnimatedTree style={{
+            left: -56, // visually hugs the edge
+            top: 8,
+            zIndex: 0,
+          }} />
+          <div style={{ position: "absolute", left: 0, top: -25, zIndex: 1 }}>
             {plantSproutSvg}
           </div>
-          <div style={{ position: "absolute", right: 0, bottom: -30, zIndex: 0 }}>
+          <div style={{ position: "absolute", right: 0, bottom: -30, zIndex: 1 }}>
             {plantLeafSvg}
           </div>
-          <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ position: "relative", zIndex: 2 }}>
             <div className="subtitle">Welcome to</div>
             <h1 className="title" style={{ fontFamily: "Inter,sans-serif", fontWeight: 700, letterSpacing: "-0.02em" }}>
               Trash2Treasure
@@ -95,6 +105,8 @@ function MainContainer({
               flexWrap: "wrap",
               maxWidth: 920,
               margin: "0 auto",
+              zIndex: 2,
+              position: "relative",
             }}
           >
             {/* Feature 1: Upcycle */}
