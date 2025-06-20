@@ -5,6 +5,7 @@ import WasteItemInput from './components/WasteItemInput';
 import UserProfile from './components/UserProfile';
 import AnimatedTree from './components/AnimatedTree';
 import MyCreations from './components/MyCreations';
+import SurpriseMe from './components/SurpriseMe';
 import { CreationsProvider } from './components/CreationsContext';
 
 /**
@@ -64,6 +65,7 @@ function App() {
     { id: "home", label: "Home" },
     { id: "input", label: "Waste Item Input" },
     { id: "creations", label: "My Creations" },
+    { id: "surprise", label: "Surprise Me" },
     { id: "profile", label: "User Profile" }
   ];
 
@@ -149,6 +151,11 @@ function App() {
               <section style={{marginTop:70}}>
                 <h2>User Profile</h2>
                 <UserProfile />
+              </section>
+            )}
+            {currentView === "surprise" && (
+              <section style={{marginTop:70, paddingTop:0, background:'none', boxShadow:'none', border:'none', minHeight: 420}}>
+                <SurpriseMe />
               </section>
             )}
           </div>
