@@ -1,40 +1,19 @@
 import React from "react";
+import { useCreations } from "./CreationsContext";
 
 /**
  * MyCreations
  * Displays a list of the user's stored crafts/composting ideas.
- * Each item shows a thumbnail, the idea text, and an area for further actions.
- * - Shows a Dicebear avatar or placeholder for each idea.
- * - The list is provided via `creations` prop, or loads from localStorage as a fallback.
- * - Future: integrate with backend/user data.
+ * - Now uses useCreations context for data and manipulating creations.
  */
 
-// PUBLIC_INTERFACE
-function MyCreations({ creations: propCreations }) {
-  // Load creations from prop or localStorage fallback.
-  // Each "creation" should be an object: {id, ideaText, imageUrl (optional), createdAt, ...rest}
-  const [creations, setCreations] = React.useState(() => {
-    if (Array.isArray(propCreations)) return propCreations;
-    // Fallback: try from localStorage (simple demo)
-    try {
-      const stored = window.localStorage.getItem("myCreations");
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
-  });
+ // PUBLIC_INTERFACE
+function MyCreations() {
+  const { creations, editCreation, markDone } = useCreations();
 
-  React.useEffect(() => {
-    if (Array.isArray(propCreations)) {
-      setCreations(propCreations);
-    }
-  }, [propCreations]);
-
-  // Helper to generate a deterministic Dicebear avatar for each creation (hash on text or id)
+  // Helper to generate a deterministic Dicebear avatar for each creation
   function getIdeaAvatarUrl(idea, idx) {
-    // Use Dicebear "bottts" style with the idea's text or id for uniqueness
     const seed = encodeURIComponent((idea.ideaText || "") + "_" + (idea.id ?? idx));
-    // Public Dicebear style (bottts): SVG avatar
     return `https://avatars.dicebear.com/api/bottts-neutral/${seed}.svg`;
   }
 
@@ -53,7 +32,7 @@ function MyCreations({ creations: propCreations }) {
     );
   }
 
-  // --- Dummy handlers for entries actions ---
+  // --- Handlers for entry actions (stub: full logic future) ---
   function handleRegenerate(idx) {
     window.alert("Idea " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " would be re-generated! (TODO: implement suggestion engine integration)");
   }
@@ -61,7 +40,9 @@ function MyCreations({ creations: propCreations }) {
     window.alert("Edit for idea " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " (Feature coming soon)");
   }
   function handleDone(idx) {
-    window.alert("Marked as done: " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " (Feature coming soon)");
+    const id = creations[idx].id;
+    markDone(id);
+    window.alert("Marked as done: " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " (UI badge coming soon)");
   }
   function handleShare(idx) {
     window.alert("Sharing idea: " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " (Feature coming soon)");

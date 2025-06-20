@@ -4,6 +4,8 @@ import MainContainer from './components/MainContainer';
 import WasteItemInput from './components/WasteItemInput';
 import UserProfile from './components/UserProfile';
 import AnimatedTree from './components/AnimatedTree';
+import MyCreations from './components/MyCreations';
+import { CreationsProvider } from './components/CreationsContext';
 
 /**
  * App: Trash2Treasure's main entry point.
@@ -61,6 +63,7 @@ function App() {
   const tabs = [
     { id: "home", label: "Home" },
     { id: "input", label: "Waste Item Input" },
+    { id: "creations", label: "My Creations" },
     { id: "profile", label: "User Profile" }
   ];
 
@@ -87,76 +90,71 @@ function App() {
   // - Always rendered so that app-wide theme is visually coherent
 
   return (
-    <div className="app" style={{ position: "relative", minHeight: "100vh" }}>
-      {/* AnimatedTree as sidebar background, all core pages (home/input/suggest/profile) */}
-      <AnimatedTree style={{
-        position: "fixed",
-        left: 0,
-        top: 72, // below navbar
-        height: "calc(100vh - 72px)",
-        minHeight: 420,
-        zIndex: 0,
-        opacity: 0.93,
-        // Responsive design is handled by CSS .ecocraftify-animated-tree-sidebar
-      }} />
+    <CreationsProvider>
+      <div className="app" style={{ position: "relative", minHeight: "100vh" }}>
+        {/* AnimatedTree as sidebar background, all core pages */}
+        <AnimatedTree style={{
+          position: "fixed",
+          left: 0,
+          top: 72,
+          height: "calc(100vh - 72px)",
+          minHeight: 420,
+          zIndex: 0,
+          opacity: 0.93,
+          // Responsive design is handled by CSS .ecocraftify-animated-tree-sidebar
+        }} />
 
-      <nav className="navbar">
-        <div className="container" style={{ display: "flex", alignItems: "center", width: "100%" }}>
-          <div className="logo" style={{ minWidth: 160 }}>
-            <span className="logo-symbol" role="img" aria-label="leaf">🌿</span> Trash2Treasure
+        <nav className="navbar">
+          <div className="container" style={{ display: "flex", alignItems: "center", width: "100%" }}>
+            <div className="logo" style={{ minWidth: 160 }}>
+              <span className="logo-symbol" role="img" aria-label="leaf">🌿</span> Trash2Treasure
+            </div>
+            <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
+              {tabs.map(tab => (
+                <button
+                  key={tab.id}
+                  className="navbar-tab-btn"
+                  style={tabBtnStyle(currentView === tab.id)}
+                  onClick={() => setCurrentView(tab.id)}
+                  aria-current={currentView === tab.id ? "page" : undefined}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            {/* User mini avatar or action can go here in future */}
           </div>
-          <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-            {tabs.map(tab => (
-              <button
-                key={tab.id}
-                className="navbar-tab-btn"
-                style={tabBtnStyle(currentView === tab.id)}
-                onClick={() => setCurrentView(tab.id)}
-                aria-current={currentView === tab.id ? "page" : undefined}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          {/* User mini avatar or action can go here in future */}
-        </div>
-      </nav>
+        </nav>
 
-      <main style={{ minHeight: 630, position: "relative" }}>
-        <div className="container">
-          {currentView === "home" && (
-            <MainContainer
-              wasteItems={wasteItems}
-              setWasteItems={handleSetWasteItems}
-              userProfile={userProfile}
-              updateUserProfile={handleUpdateUserProfile}
-              addFavorite={handleAddFavorite}
-              showHero={true}
-              showSections={false}
-            />
-          )}
-          {currentView === "input" && (
-            <section style={{marginTop:70}}>
-              <h2>Waste Item Input</h2>
-              <WasteItemInput
-                wasteItems={wasteItems}
-                setWasteItems={handleSetWasteItems}
+        <main style={{ minHeight: 630, position: "relative" }}>
+          <div className="container">
+            {currentView === "home" && (
+              <MainContainer
+                showHero={true}
+                showSections={false}
               />
-            </section>
-          )}
-          {/* Project Suggestions page removed */}
-          {currentView === "profile" && (
-            <section style={{marginTop:70}}>
-              <h2>User Profile</h2>
-              <UserProfile
-                userProfile={userProfile}
-                updateProfile={handleUpdateUserProfile}
-              />
-            </section>
-          )}
-        </div>
-      </main>
-    </div>
+            )}
+            {currentView === "input" && (
+              <section style={{marginTop:70}}>
+                <h2>Waste Item Input</h2>
+                <WasteItemInput />
+              </section>
+            )}
+            {currentView === "creations" && (
+              <section style={{marginTop:70}}>
+                <MyCreations />
+              </section>
+            )}
+            {currentView === "profile" && (
+              <section style={{marginTop:70}}>
+                <h2>User Profile</h2>
+                <UserProfile />
+              </section>
+            )}
+          </div>
+        </main>
+      </div>
+    </CreationsProvider>
   );
 }
 

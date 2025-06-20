@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import "../App.css";
 import { getSuggestedProjects } from "../utils/suggestionEngine"; // Import the suggestion engine
+import { useCreations } from "./CreationsContext";
 
 /**
  * WasteItemInput:
- * Lets users input or select types of household waste materials.
- * Controlled by container's wasteItems/setWasteItems state (not managed internally).
- * Features: Dropdown selection for common items, tag entry, and free text.
- * 
- * Props:
- *   wasteItems: array<string>, the list of currently selected waste items.
- *   setWasteItems: function(newItems: array<string>), updates wasteItems state in parent.
+ * Allow user input of household waste types.
+ * - Now supports saving generated suggestions as items into MyCreations via context.
  */
 // PUBLIC_INTERFACE
-function WasteItemInput({ wasteItems = [], setWasteItems }) {
+function WasteItemInput() {
+  const { addCreation } = useCreations();
+
+  const [wasteItems, setWasteItems] = useState([]);
   const COMMON_ITEMS = [
     "Plastic Bottles",
     "Glass Jars",
@@ -163,6 +162,7 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
                 display: "flex",
                 alignItems: "flex-start",
                 gap: 17,
+                position: "relative",
               }}
             >
               {/* Show suggestion image if present */}
@@ -211,6 +211,21 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
                     ))}
                   </div>
                 )}
+                {/* Save to MyCreations action */}
+                <button
+                  className="btn"
+                  style={{ marginTop: 12, fontSize: "0.95em", padding: "6px 20px", background: "var(--primary-green)" }}
+                  onClick={() => {
+                    addCreation({
+                      ideaText: idea.title,
+                      description: idea.description,
+                      imageUrl: idea.imageUrl,
+                      relatedWasteItems: idea.relatedWasteItems,
+                    });
+                  }}
+                >
+                  Save to My Creations
+                </button>
               </div>
             </div>
           ))}
