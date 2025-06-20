@@ -4,6 +4,7 @@ import MainContainer from './components/MainContainer';
 import WasteItemInput from './components/WasteItemInput';
 import ProjectSuggestions from './components/ProjectSuggestions';
 import UserProfile from './components/UserProfile';
+import AnimatedTree from './components/AnimatedTree';
 
 /**
  * App: Trash2Treasure's main entry point.
@@ -81,9 +82,26 @@ function App() {
     outline: "none"
   });
 
-  // Themed animated bar for brand
+  // Sidebar/Background AnimatedTree logic:
+  // - For all core views, render the tree as a background/side element (not inside MainContainer)
+  // - Position absolutely with proper zIndex so it is non-intrusive (covered by content)
+  // - Mobile: hides automatically via .ecocraftify-animated-tree-sidebar CSS
+  // - Always rendered so that app-wide theme is visually coherent
+
   return (
-    <div className="app">
+    <div className="app" style={{ position: "relative", minHeight: "100vh" }}>
+      {/* AnimatedTree as sidebar background, all core pages (home/input/suggest/profile) */}
+      <AnimatedTree style={{
+        position: "fixed",
+        left: 0,
+        top: 72, // below navbar
+        height: "calc(100vh - 72px)",
+        minHeight: 420,
+        zIndex: 0,
+        opacity: 0.93,
+        // Responsive design is handled by CSS .ecocraftify-animated-tree-sidebar
+      }} />
+
       <nav className="navbar">
         <div className="container" style={{ display: "flex", alignItems: "center", width: "100%" }}>
           <div className="logo" style={{ minWidth: 160 }}>
@@ -106,7 +124,7 @@ function App() {
         </div>
       </nav>
 
-      <main style={{ minHeight: 630 }}>
+      <main style={{ minHeight: 630, position: "relative" }}>
         <div className="container">
           {currentView === "home" && (
             <MainContainer
