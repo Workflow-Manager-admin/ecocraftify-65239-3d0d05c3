@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 import { getSuggestedProjects } from "../utils/suggestionEngine";
 
@@ -15,8 +15,82 @@ function ProjectSuggestions({ wasteItems = [], onFavorite }) {
   // Retrieve suggested projects from the suggestion engine (rule/keyword based)
   const suggestedProjects = getSuggestedProjects(wasteItems);
 
+  // State for BoredAPI suggestion
+  const [apiIdea, setApiIdea] = useState(null);
+  const [apiIdeaLoading, setApiIdeaLoading] = useState(false);
+  const [apiIdeaError, setApiIdeaError] = useState(null);
+
+  // PUBLIC_INTERFACE
+  /**
+   * Fetches a random DIY or eco-friendly activity from BoredAPI
+   */
+  const fetchBoredApiIdea = async () => {
+    setApiIdea(null);
+    setApiIdeaError(null);
+    setApiIdeaLoading(true);
+
+    try {
+      // Prefer type 'diy', but fallback to eco-friendly if available in future
+      const url = "https://www.boredapi.com/api/activity?type=diy";
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`API request failed with ${res.status}`);
+      const activity = await res.json();
+      setApiIdea(activity.activity || "Found a fun DIY tip!");
+    } catch (err) {
+      setApiIdeaError("Could not fetch a suggestion right now. Please try again.");
+    } finally {
+      setApiIdeaLoading(false);
+    }
+  };
+
   return (
     <div className="project-suggestions-list" style={listStyle}>
+      {/* "Try This Idea" Button and API display */}
+      <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 16 }}>
+        <button
+          type="button"
+          className="btn"
+          style={{
+            background: "var(--primary-green)",
+            color: "#fff",
+            fontWeight: 600,
+            fontSize: "1.01rem",
+            letterSpacing: "0.01em",
+            border: "none",
+            borderRadius: 8,
+            padding: "10px 22px",
+            cursor: "pointer",
+            boxShadow: "0 2px 8px 0 rgba(67, 175, 80, 0.09)",
+            minWidth: 140,
+          }}
+          onClick={fetchBoredApiIdea}
+          aria-label="Try a random upcycling/DIY idea"
+          disabled={apiIdeaLoading}
+        >
+          {apiIdeaLoading ? "Fetching..." : "🌟 Try This Idea"}
+        </button>
+        {apiIdeaError && (
+          <span style={{ color: "#D32F2F", fontWeight: 500, fontSize: "0.98em" }}>{apiIdeaError}</span>
+        )}
+      </div>
+      {apiIdea && (
+        <div
+          style={{
+            background: "#fafdff",
+            borderLeft: "4px solid var(--accent-yellow)",
+            borderRadius: "8px",
+            padding: "13px 18px 9px 18px",
+            marginBottom: 8,
+            color: "var(--primary-green)",
+            fontWeight: 600,
+            fontSize: "1.06rem",
+            boxShadow: "0 1px 7px 0 rgba(80,160,90,0.07)"
+          }}
+        >
+          <span role="img" aria-label="sparkle" style={{ marginRight: 7 }}>💡</span>
+          {apiIdea}
+        </div>
+      )}
       {suggestedProjects.map((proj, projIdx) => (
         <div key={proj.title + projIdx} className="project-card-ecocraftify" style={cardStyle}>
           <h3 style={projectTitleStyle}>{proj.title}</h3>
