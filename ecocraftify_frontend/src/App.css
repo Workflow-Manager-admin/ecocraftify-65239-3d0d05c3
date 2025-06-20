@@ -284,6 +284,21 @@ section {
   }
 }
 
+/* --- Lush leaf animation overlays (enhanced) --- */
+.leaf-fall-effect {
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: luminosity;
+  user-select: none;
+  opacity: 0.99;
+}
+.leaf-fall-effect svg {
+  transition: filter 0.22s;
+}
+.leaf-fall-leaf-glow {
+  filter: drop-shadow(0 0 12px #ffe78b99);
+}
+
 /* WasteItemInput chips and controls (preserved from before, but adapted for green theme) */
 .waste-item-input-form select,
 .waste-item-input-form input[type="text"] {
