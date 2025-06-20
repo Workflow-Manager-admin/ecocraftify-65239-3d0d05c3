@@ -12,8 +12,8 @@ asset index.html 1.98 KiB [emitted]
 runtime modules 27.5 KiB 14 modules
 cacheable modules 1.37 MiB
   modules by path ./node_modules/ 1.24 MiB 31 modules
-  modules by path ./src/ 120 KiB
-    modules by path ./src/components/*.js 92.8 KiB 8 modules
+  modules by path ./src/ 121 KiB
+    modules by path ./src/components/*.js 93.7 KiB 8 modules
     modules by path ./src/*.css 13.1 KiB 4 modules
     modules by path ./src/*.js 8 KiB 2 modules
     ./src/utils/suggestionEngine.js 6.46 KiB [built] [code generated]
@@ -22,13 +22,3 @@ cacheable modules 1.37 MiB
     modules by path ./.ve/*.css 2.93 KiB 2 modules
     ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
 webpack 5.99.9 compiled successfully in 1555 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.55 MiB
-  asset bundle.js 1.53 MiB [emitted] (name: main)
-  asset main.c86187f7c3ead879b3a6.hot-update.js 15.8 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.c86187f7c3ead879b3a6.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.55 MiB = bundle.js 1.53 MiB main.c86187f7c3ead879b3a6.hot-update.js 15.8 KiB
-cached modules 1.36 MiB [cached] 50 modules
-runtime modules 27.5 KiB 14 modules
-./src/components/WasteItemInput.js 11.5 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 113 ms
