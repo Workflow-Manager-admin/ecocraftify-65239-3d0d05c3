@@ -7,14 +7,14 @@
 <i> [webpack-dev-server] On Your Network (IPv4): http://172.17.0.2:3000/
 <i> [webpack-dev-server] Content not from webpack is served from './public' directory
 Injecting EditorRootWrapper import: ../.ve/EditorRootWrapper
-asset bundle.js 1.43 MiB [emitted] (name: main)
+asset bundle.js 1.44 MiB [emitted] (name: main)
 asset index.html 1.98 KiB [emitted]
 runtime modules 27.5 KiB 14 modules
 modules by path ./node_modules/ 1.24 MiB 31 modules
-modules by path ./src/ 39 KiB
+modules by path ./src/ 43.8 KiB
   modules by path ./src/*.css 10.8 KiB 4 modules
-  modules by path ./src/components/*.js 22.6 KiB 4 modules
-  modules by path ./src/*.js 2.2 KiB 2 modules
+  modules by path ./src/components/*.js 27.3 KiB 4 modules
+  modules by path ./src/*.js 2.28 KiB 2 modules
   ./src/utils/suggestionEngine.js 3.51 KiB [built] [code generated]
 modules by path ./.ve/ 15.1 KiB
   modules by path ./.ve/*.js 10.6 KiB 2 modules
@@ -22,84 +22,180 @@ modules by path ./.ve/ 15.1 KiB
     ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
     ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
   ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1247 ms
+webpack 5.99.9 compiled successfully in 1357 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.45 MiB
+  asset bundle.js 1.44 MiB [emitted] (name: main)
+  asset main.a0ae74e125afdaa8ba3c.hot-update.js 10.2 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.a0ae74e125afdaa8ba3c.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.a0ae74e125afdaa8ba3c.hot-update.js 10.2 KiB
+cached modules 1.3 MiB [cached] 46 modules
+runtime modules 27.5 KiB 14 modules
+./src/App.js 6.21 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 126 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.44 MiB
+  asset bundle.js 1.43 MiB [emitted] (name: main)
+  asset main.12b64c004406de856799.hot-update.js 5.54 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.12b64c004406de856799.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.44 MiB = bundle.js 1.43 MiB main.12b64c004406de856799.hot-update.js 5.54 KiB
+cached modules 1.28 MiB [cached] 45 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 6.25 KiB
+  ./src/App.js 6.21 KiB [code generated]
+  ./src/components/MainContainer.js 39 bytes [built] [code generated] [1 error]
+
+ERROR in ./src/components/MainContainer.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/src/components/MainContainer.js: Identifier 'FeatureCard' has already been declared. (189:9)
+
+  187 |
+  188 | // --- Feature Highlight Card: styled for green/eco branding ---
+> 189 | function FeatureCard({ icon, title, details }) {
+      |          ^
+  190 |   return (
+  191 |     <div
+  192 |       style={{
+    at constructor (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:363:19)
+    at JSXParserMixin.raise (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:6609:19)
+    at ScopeHandler.checkRedeclarationInScope (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:1626:19)
+    at ScopeHandler.declareName (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:1592:12)
+    at JSXParserMixin.registerFunctionStatementId (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13381:16)
+    at JSXParserMixin.parseFunction (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13365:12)
+    at JSXParserMixin.parseFunctionStatement (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13044:17)
+    at JSXParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12709:21)
+    at JSXParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12685:17)
+    at JSXParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12662:17)
+    at JSXParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13235:36)
+    at JSXParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13228:10)
+    at JSXParserMixin.parseProgram (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12541:10)
+    at JSXParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12531:25)
+    at JSXParserMixin.parse (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:14410:10)
+    at parse (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:14444:38)
+    at parser (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:261:32)
+    at /home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:223:11)
+ @ ./src/App.js 3:0-55 142:63-76
+ @ ./src/index.js 5:0-24 11:32-35
+
+webpack 5.99.9 compiled with 1 error in 64 ms
 assets by status 1.98 KiB [cached] 1 asset
 assets by path *.js 1.43 MiB
   asset bundle.js 1.43 MiB [emitted] (name: main)
-  asset main.30cf7a4a0804d73e0368.hot-update.js 4.34 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.30cf7a4a0804d73e0368.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.43 MiB = bundle.js 1.43 MiB main.30cf7a4a0804d73e0368.hot-update.js 4.34 KiB
+  asset main.eed028f70c90ca9cf895.hot-update.js 854 bytes [emitted] [immutable] [hmr] (name: main)
+asset main.eed028f70c90ca9cf895.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.43 MiB = bundle.js 1.43 MiB main.eed028f70c90ca9cf895.hot-update.js 854 bytes
 cached modules 1.29 MiB [cached] 46 modules
 runtime modules 27.5 KiB 14 modules
-./src/App.js 1.76 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 110 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.46 MiB
-  asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.fec77ea8dd450f21a9ed.hot-update.js 19.7 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.fec77ea8dd450f21a9ed.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.46 MiB = bundle.js 1.44 MiB main.fec77ea8dd450f21a9ed.hot-update.js 19.7 KiB
-cached modules 1.29 MiB [cached] 46 modules
-runtime modules 27.5 KiB 14 modules
-./src/components/MainContainer.js 13.9 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 89 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.46 MiB
-  asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.c45c5c04b9d6fdc31700.hot-update.js 19.7 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.c45c5c04b9d6fdc31700.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.46 MiB = bundle.js 1.44 MiB main.c45c5c04b9d6fdc31700.hot-update.js 19.7 KiB
-cached modules 1.29 MiB [cached] 46 modules
-runtime modules 27.5 KiB 14 modules
-./src/components/MainContainer.js 13.9 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 72 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.46 MiB
-  asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.75163e1fbfd53d10ddbe.hot-update.js 19.7 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.75163e1fbfd53d10ddbe.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.46 MiB = bundle.js 1.44 MiB main.75163e1fbfd53d10ddbe.hot-update.js 19.7 KiB
-cached modules 1.29 MiB [cached] 46 modules
-runtime modules 27.5 KiB 14 modules
-./src/components/MainContainer.js 13.8 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 72 ms
+./src/components/MainContainer.js 39 bytes [built] [1 error]
+
+ERROR in ./src/components/MainContainer.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/src/components/MainContainer.js: Only one default export allowed per module. (146:0)
+
+  144 | export default MainContainer;
+  145 |
+> 146 | export default MainContainer;
+      | ^
+  147 |
+    at constructor (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:363:19)
+    at JSXParserMixin.raise (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:6609:19)
+    at JSXParserMixin.checkDuplicateExports (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13992:14)
+    at JSXParserMixin.checkExport (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13922:14)
+    at JSXParserMixin.parseExport (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13750:12)
+    at JSXParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12797:27)
+    at JSXParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12685:17)
+    at JSXParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12662:17)
+    at JSXParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13235:36)
+    at JSXParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13228:10)
+    at JSXParserMixin.parseProgram (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12541:10)
+    at JSXParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12531:25)
+    at JSXParserMixin.parse (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:14410:10)
+    at parse (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:14444:38)
+    at parser (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:261:32)
+    at /home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:223:11)
+ @ ./src/App.js 3:0-55 142:63-76
+ @ ./src/index.js 5:0-24 11:32-35
+
+webpack 5.99.9 compiled with 1 error in 38 ms
+assets by status 1.43 MiB [cached] 2 assets
+cached modules 1.29 MiB (javascript) 27.5 KiB (runtime) [cached] 60 modules
+./src/components/MainContainer.js 39 bytes [built] [1 error]
+
+ERROR in ./src/components/MainContainer.js
+Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/src/components/MainContainer.js: Only one default export allowed per module. (146:0)
+
+  144 | export default MainContainer;
+  145 |
+> 146 | export default MainContainer;
+      | ^
+  147 |
+    at constructor (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:363:19)
+    at JSXParserMixin.raise (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:6609:19)
+    at JSXParserMixin.checkDuplicateExports (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13992:14)
+    at JSXParserMixin.checkExport (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13922:14)
+    at JSXParserMixin.parseExport (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13750:12)
+    at JSXParserMixin.parseStatementContent (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12797:27)
+    at JSXParserMixin.parseStatementLike (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12685:17)
+    at JSXParserMixin.parseModuleItem (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12662:17)
+    at JSXParserMixin.parseBlockOrModuleBlockBody (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13235:36)
+    at JSXParserMixin.parseBlockBody (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:13228:10)
+    at JSXParserMixin.parseProgram (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12541:10)
+    at JSXParserMixin.parseTopLevel (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:12531:25)
+    at JSXParserMixin.parse (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:14410:10)
+    at parse (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/parser/lib/index.js:14444:38)
+    at parser (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transformation/index.js:22:50)
+    at run.next (<anonymous>)
+    at transform (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:261:32)
+    at /home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend/node_modules/gensync/index.js:223:11)
+ @ ./src/App.js 3:0-55 142:63-76
+ @ ./src/index.js 5:0-24 11:32-35
+
+webpack 5.99.9 compiled with 1 error in 34 ms
 assets by status 1.98 KiB [cached] 1 asset
 assets by path *.js 1.45 MiB
   asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.8b810a22bfcded9c3faa.hot-update.js 16.7 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.8b810a22bfcded9c3faa.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.8b810a22bfcded9c3faa.hot-update.js 16.7 KiB
-cached modules 1.29 MiB [cached] 46 modules
+  asset main.80cf468c925950d4a1c7.hot-update.js 10.7 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.80cf468c925950d4a1c7.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.80cf468c925950d4a1c7.hot-update.js 10.7 KiB
+cached modules 1.28 MiB [cached] 45 modules
 runtime modules 27.5 KiB 14 modules
-./src/components/MainContainer.js 11.5 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 68 ms
+javascript modules 13.3 KiB
+  ./src/App.js 6.21 KiB [code generated]
+  ./src/components/MainContainer.js 7.06 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 64 ms
 assets by status 1.98 KiB [cached] 1 asset
 assets by path *.js 1.45 MiB
   asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.f6208a84e5fac131906a.hot-update.js 16.5 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.f6208a84e5fac131906a.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.f6208a84e5fac131906a.hot-update.js 16.5 KiB
+  asset main.64a2a0f052c4d47f17ab.hot-update.js 12.7 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.64a2a0f052c4d47f17ab.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.64a2a0f052c4d47f17ab.hot-update.js 12.7 KiB
 cached modules 1.29 MiB [cached] 46 modules
 runtime modules 27.5 KiB 14 modules
-./src/components/MainContainer.js 11.4 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 53 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.45 MiB
-  asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.c25dfd02964cbb09fa79.hot-update.js 16.5 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.c25dfd02964cbb09fa79.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.c25dfd02964cbb09fa79.hot-update.js 16.5 KiB
-cached modules 1.29 MiB [cached] 46 modules
-runtime modules 27.5 KiB 14 modules
-./src/components/MainContainer.js 11.3 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 55 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.45 MiB
-  asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.d5584b2a8330ab9a611c.hot-update.js 16.1 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.d5584b2a8330ab9a611c.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.d5584b2a8330ab9a611c.hot-update.js 16.1 KiB
-cached modules 1.29 MiB [cached] 46 modules
-runtime modules 27.5 KiB 14 modules
-./src/components/MainContainer.js 11 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 59 ms
+./src/components/MainContainer.js 8.64 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 81 ms
