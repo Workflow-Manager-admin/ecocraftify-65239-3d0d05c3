@@ -156,38 +156,62 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
                 background: "#fafdff",
                 borderLeft: "4px solid var(--secondary-green)",
                 borderRadius: 10,
-                marginBottom: 12,
-                padding: "13px 18px 7px 18px",
+                marginBottom: 16,
+                padding: "13px 18px 12px 18px",
                 boxShadow: "0 2px 8px 0 rgba(80,160,90,0.07)",
                 maxWidth: 540,
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 17,
               }}
             >
-              <div style={{ fontWeight: 600, fontSize: "1.09em", color: "var(--primary-green)" }}>
-                {idea.title}
-              </div>
-              <div style={{ color: "var(--text-secondary)", marginTop: 2, fontSize: "0.97em" }}>
-                {idea.description}
-              </div>
-              {Array.isArray(idea.relatedWasteItems) && (
-                <div style={{ marginTop: 6, display: "flex", gap: "7px", flexWrap: "wrap" }}>
-                  {idea.relatedWasteItems.map((mat, mi) => (
-                    <span
-                      key={mat + mi}
-                      style={{
-                        background: "var(--secondary-green)",
-                        color: "#fff",
-                        borderRadius: "14px",
-                        fontSize: "0.93em",
-                        padding: "2px 10px",
-                        display: "inline-block",
-                        marginLeft: mi ? 4 : 0,
-                      }}
-                    >
-                      {mat}
-                    </span>
-                  ))}
-                </div>
+              {/* Show suggestion image if present */}
+              {idea.imageUrl && (
+                <img
+                  src={idea.imageUrl}
+                  alt={idea.title}
+                  style={{
+                    width: 68,
+                    height: 68,
+                    borderRadius: 12,
+                    objectFit: "cover",
+                    marginRight: 8,
+                    border: "1.5px solid var(--primary-green)",
+                    boxShadow: "0 2px 8px 0 rgba(67, 175, 80, 0.05)",
+                    background: "#e8fbe2",
+                    flexShrink: 0,
+                  }}
+                  loading="lazy"
+                />
               )}
+              <div style={{ flex: 1 }}>
+                <div style={{ fontWeight: 600, fontSize: "1.09em", color: "var(--primary-green)" }}>
+                  {idea.title}
+                </div>
+                <div style={{ color: "var(--text-secondary)", marginTop: 2, fontSize: "0.97em" }}>
+                  {idea.description}
+                </div>
+                {Array.isArray(idea.relatedWasteItems) && (
+                  <div style={{ marginTop: 6, display: "flex", gap: "7px", flexWrap: "wrap" }}>
+                    {idea.relatedWasteItems.map((mat, mi) => (
+                      <span
+                        key={mat + mi}
+                        style={{
+                          background: "var(--secondary-green)",
+                          color: "#fff",
+                          borderRadius: "14px",
+                          fontSize: "0.93em",
+                          padding: "2px 10px",
+                          display: "inline-block",
+                          marginLeft: mi ? 4 : 0,
+                        }}
+                      >
+                        {mat}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

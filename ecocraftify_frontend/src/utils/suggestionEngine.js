@@ -13,6 +13,7 @@ const PROJECT_DATABASE = [
     description:
       "Upcycle colorful plastic bottle caps into stunning mosaic wall art. Easy, vibrant, and totally unique!",
     relatedWasteItems: ["Bottle Caps", "Plastic Caps", "Plastic Bottles", "Cardboard"],
+    imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=400&q=80"
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ const PROJECT_DATABASE = [
     description:
       "Turn empty tin cans into lovely outdoor lanterns. Punch decorative holes and illuminate your garden with upcycled charm.",
     relatedWasteItems: ["Tin Cans", "Soup Cans", "Can Lids", "Candles"],
+    imageUrl: "https://images.unsplash.com/photo-1464983953574-0892a716854b?fit=crop&w=400&q=80"
   },
   {
     id: 3,
@@ -27,6 +29,7 @@ const PROJECT_DATABASE = [
     description:
       "Repurpose leftover fabric into trendy, washable coasters. Personalize with your favorite patterns!",
     relatedWasteItems: ["Fabric Scraps", "Clothes", "Old Shirts", "Jeans"],
+    imageUrl: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?fit=crop&w=400&q=80"
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ const PROJECT_DATABASE = [
     description:
       "Reuse glass jars to plant kitchen herbs for a mini-garden on your windowsill.",
     relatedWasteItems: ["Glass Jars", "Mason Jars", "Jam Jars"],
+    imageUrl: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?fit=crop&w=400&q=80"
   },
   {
     id: 5,
@@ -41,6 +45,7 @@ const PROJECT_DATABASE = [
     description:
       "Transform cardboard boxes into eco-friendly organizers or drawer dividers.",
     relatedWasteItems: ["Cardboard", "Shoebox", "Corrugated Box"],
+    imageUrl: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?fit=crop&w=400&q=80"
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ const PROJECT_DATABASE = [
     description:
       "Create beautiful, lightweight jewelry by rolling upcycled magazines or colored paper.",
     relatedWasteItems: ["Paper", "Old Magazines", "Newspapers"],
+    imageUrl: "https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?fit=crop&w=400&q=80"
   },
   {
     id: 7,
@@ -55,6 +61,7 @@ const PROJECT_DATABASE = [
     description:
       "Repurpose scratched CDs/DVDs into shimmering window sun catchers.",
     relatedWasteItems: ["CDs", "DVDs", "Disc"],
+    imageUrl: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?fit=crop&w=400&q=80"
   },
   // Add more projects as needed
 ];
