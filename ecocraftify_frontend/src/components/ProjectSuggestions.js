@@ -1,19 +1,10 @@
 import React from "react";
 import "../App.css";
+import { getSuggestedProjects } from "../utils/suggestionEngine";
 
 /**
  * ProjectSuggestions Component
- * Displays a list of eco-friendly DIY project ideas based on provided waste items.
- * For now, shows stub project cards and accepts props for future integration.
- * 
- * Props:
- *   wasteItems: Array of strings (waste material names), OPTIONAL.
- *     Will later be used for dynamic suggestions.
- */
-/**
- * ProjectSuggestions Component
- * Displays a list of eco-friendly DIY project ideas based on provided waste items.
- * Reacts to `wasteItems` prop for suggestions.
+ * Displays a list of eco-friendly DIY project ideas based on provided waste items via a suggestion engine.
  * 
  * Props:
  *   wasteItems: Array of strings (waste material names)
@@ -21,56 +12,25 @@ import "../App.css";
  */
 // PUBLIC_INTERFACE
 function ProjectSuggestions({ wasteItems = [], onFavorite }) {
-  // Simulated/fake suggested projects for demonstration
-  const stubProjects = [
-    {
-      id: 1,
-      title: "Bottle Cap Mosaic Art",
-      materials: ["Bottle Caps", "Cardboard", "Glue"],
-      description:
-        "Upcycle colorful plastic bottle caps into stunning mosaic wall art. Easy, vibrant, and totally unique!",
-    },
-    {
-      id: 2,
-      title: "Tin Can Lanterns",
-      materials: ["Tin Cans", "Nails", "Candles"],
-      description:
-        "Turn empty tin cans into lovely outdoor lanterns. Punch decorative holes and illuminate your garden with upcycled charm.",
-    },
-    {
-      id: 3,
-      title: "Fabric Scrap Coasters",
-      materials: ["Fabric Scraps", "Thread", "Needle"],
-      description:
-        "Repurpose leftover fabric into trendy, washable coasters. Personalize with your favorite patterns!",
-    },
-  ];
-
-  // Optionally filter/favor projects based on wasteItems for user interactivity
-  const filteredProjects =
-    Array.isArray(wasteItems) && wasteItems.length
-      ? stubProjects.filter((p) =>
-          p.materials.some((m) =>
-            wasteItems.some(
-              (wi) => wi.toLowerCase().includes(m.toLowerCase()) || m.toLowerCase().includes(wi.toLowerCase())
-            )
-          )
-        )
-      : stubProjects;
+  // Retrieve suggested projects from the suggestion engine (rule/keyword based)
+  const suggestedProjects = getSuggestedProjects(wasteItems);
 
   return (
     <div className="project-suggestions-list" style={listStyle}>
-      {filteredProjects.map((proj) => (
-        <div key={proj.id} className="project-card-ecocraftify" style={cardStyle}>
+      {suggestedProjects.map((proj, projIdx) => (
+        <div key={proj.title + projIdx} className="project-card-ecocraftify" style={cardStyle}>
           <h3 style={projectTitleStyle}>{proj.title}</h3>
           <div style={materialListStyle}>
             <span style={materialsLabelStyle}>Materials:</span>
-            {proj.materials.map((m, idx) => (
-              <span key={idx} style={materialChipStyle}>{m}</span>
-            ))}
+            {/* Show related waste/materials */}
+            {Array.isArray(proj.relatedWasteItems)
+              ? proj.relatedWasteItems.map((m, idx) => (
+                  <span key={idx} style={materialChipStyle}>{m}</span>
+                ))
+              : null}
           </div>
           <p style={descStyle}>{proj.description}</p>
-          {/* Example: In the future, clicking heart will favorite */}
+          {/* Favorite button */}
           {onFavorite && (
             <button
               className="btn"
@@ -90,7 +50,7 @@ function ProjectSuggestions({ wasteItems = [], onFavorite }) {
           )}
         </div>
       ))}
-      {filteredProjects.length === 0 && (
+      {suggestedProjects.length === 0 && (
         <div style={noSuggestionsStyle}>
           <em>No project ideas to suggest yet. Add some waste items!</em>
         </div>
