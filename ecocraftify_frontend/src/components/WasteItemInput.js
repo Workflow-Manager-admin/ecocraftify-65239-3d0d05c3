@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import "../App.css";
 
 /**
@@ -6,7 +6,6 @@ import "../App.css";
  * Lets users input or select types of household waste materials.
  * Controlled by container's wasteItems/setWasteItems state (not managed internally).
  * Features: Dropdown selection for common items, tag entry, and free text.
- * Wikipedia summary (fun fact) for each new item.
  * 
  * Props:
  *   wasteItems: array<string>, the list of currently selected waste items.
@@ -29,13 +28,6 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
   const [dropdownValue, setDropdownValue] = useState("");
   const [customInput, setCustomInput] = useState("");
 
-  // Wikipedia summary state
-  const [wikiSummary, setWikiSummary] = useState("");
-  const [wikiTitle, setWikiTitle] = useState("");
-  const [wikiLoading, setWikiLoading] = useState(false);
-  const [wikiError, setWikiError] = useState("");
-  const lastRequestedRef = useRef(""); // Prevent race conditions
-
   // Handler for dropdown/selection change
   const handleDropdownChange = (e) => {
     setDropdownValue(e.target.value);
@@ -45,7 +37,7 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
     setCustomInput(e.target.value);
   };
   // Handler for adding an item (from dropdown or text)
-  const handleAddItem = async (e) => {
+  const handleAddItem = (e) => {
     e.preventDefault();
     let valueToAdd =
       dropdownValue === "Other" ? customInput.trim() : dropdownValue;
@@ -53,18 +45,10 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
     setWasteItems([...wasteItems, valueToAdd]);
     setDropdownValue("");
     setCustomInput("");
-    // Fetch Wikipedia summary for new item
-    fetchWikipediaSummary(valueToAdd);
   };
   // Handler for removing an item (tag deletion)
   const removeItem = (item) => {
     setWasteItems(wasteItems.filter((i) => i !== item));
-    // If removing last shown item, clear summary
-    if (wikiTitle && wikiTitle.toLowerCase() === item.toLowerCase()) {
-      setWikiSummary("");
-      setWikiTitle("");
-      setWikiError("");
-    }
   };
 
   // Placeholder submit handler, in future can trigger project suggestion engine
@@ -73,67 +57,6 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
     // Placeholder: Connect with project suggestion engine here in the future
     alert("Submitted: " + JSON.stringify(wasteItems));
   };
-
-  // PUBLIC_INTERFACE
-  /**
-   * Fetches a summary from Wikipedia REST API for a material/waste item
-   */
-  async function fetchWikipediaSummary(wasteItem) {
-    if (!wasteItem) return;
-    setWikiSummary("");
-    setWikiError("");
-    setWikiLoading(true);
-
-    const encoded = encodeURIComponent(wasteItem.replace(/ /g, "_"));
-    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encoded}`;
-    lastRequestedRef.current = wasteItem;
-    try {
-      const resp = await fetch(url, { headers: { accept: "application/json" } });
-      if (!resp.ok) {
-        throw new Error(`Wikipedia returned status ${resp.status}`);
-      }
-      const data = await resp.json();
-      // Only show result if still the latest request
-      if (lastRequestedRef.current !== wasteItem) return;
-      if (data && data.extract) {
-        setWikiSummary(data.extract);
-        setWikiTitle(data.title || wasteItem);
-        setWikiError("");
-      } else if (data.type === "https://mediawiki.org/wiki/HyperSwitch/errors/not_found") {
-        setWikiSummary("");
-        setWikiError("No Wikipedia summary found for that item.");
-        setWikiTitle(wasteItem);
-      } else {
-        setWikiSummary("");
-        setWikiError("No relevant Wikipedia fact found.");
-        setWikiTitle(wasteItem);
-      }
-    } catch (e) {
-      if (lastRequestedRef.current === wasteItem) {
-        setWikiSummary("");
-        setWikiError("Unable to fetch Wikipedia info. Try again later.");
-        setWikiTitle(wasteItem);
-      }
-    } finally {
-      if (lastRequestedRef.current === wasteItem) setWikiLoading(false);
-    }
-  }
-
-  // Fetch Wikipedia summary for last item added, whenever wasteItems updates
-  useEffect(() => {
-    if (wasteItems.length === 0) {
-      setWikiSummary("");
-      setWikiTitle("");
-      setWikiError("");
-      setWikiLoading(false);
-      return;
-    }
-    const newItem = wasteItems[wasteItems.length - 1];
-    if (!newItem) return;
-
-    fetchWikipediaSummary(newItem);
-    // eslint-disable-next-line
-  }, [wasteItems.length]);
 
   return (
     <>
@@ -208,55 +131,7 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
           Submit
         </button>
       </form>
-
-      {/* --- Wikipedia/Fact section --- */}
-      <div style={factBoxStyle}>
-        <strong style={{ color: "var(--secondary-green)" }}>
-          {wikiLoading ? "Looking up fun fact..." : wikiTitle ? "Did you know?" : "Material Fact"}
-        </strong>
-        <div style={{ marginTop: 4 }}>
-          {wikiLoading && (
-            <span style={{ color: "#6e8855" }}>Fetching Wikipedia summary...</span>
-          )}
-          {!wikiLoading && wikiError && (
-            <span style={{ color: "#c55332", opacity: 0.97 }}>{wikiError}</span>
-          )}
-          {!wikiLoading && !wikiError && wikiSummary && (
-            <span>
-              <span style={{ color: "var(--text-secondary)" }}>{wikiSummary}</span>
-              {wikiTitle && (
-                <span>
-                  {" "}
-                  <a
-                    href={`https://en.wikipedia.org/wiki/${encodeURIComponent(
-                      wikiTitle.replace(/ /g, "_")
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      marginLeft: 7,
-                      color: "var(--accent-yellow)",
-                      textDecoration: "underline dotted",
-                      fontWeight: 500,
-                      fontSize: "0.97em"
-                    }}
-                  >
-                    Learn more
-                  </a>
-                </span>
-              )}
-            </span>
-          )}
-          {!wikiLoading && !wikiError && !wikiSummary && wikiTitle && (
-            <span style={{ color: "#9a9e92" }}>No fact found for "{wikiTitle}"</span>
-          )}
-          {!wikiTitle && !wikiLoading && (
-            <span style={{ color: "#b5ab80" }}>
-              Add a waste material to see a fun Wikipedia fact here!
-            </span>
-          )}
-        </div>
-      </div>
+      {/* No Wikipedia/description box shown; all outputs limited to craft/compost suggestions now */}
     </>
   );
 }
