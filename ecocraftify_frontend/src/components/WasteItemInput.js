@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+import { getSuggestedProjects } from "../utils/suggestionEngine"; // Import the suggestion engine
 
 /**
  * WasteItemInput:
@@ -28,13 +29,18 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
   const [dropdownValue, setDropdownValue] = useState("");
   const [customInput, setCustomInput] = useState("");
 
+  // For controlling the suggestion display — only show on submit
+  const [suggestions, setSuggestions] = useState(null);
+
   // Handler for dropdown/selection change
   const handleDropdownChange = (e) => {
     setDropdownValue(e.target.value);
+    // Do NOT show suggestions yet
   };
   // Handler for free text input change
   const handleCustomInputChange = (e) => {
     setCustomInput(e.target.value);
+    // Do NOT show suggestions yet
   };
   // Handler for adding an item (from dropdown or text)
   const handleAddItem = (e) => {
@@ -45,17 +51,23 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
     setWasteItems([...wasteItems, valueToAdd]);
     setDropdownValue("");
     setCustomInput("");
+    // Do NOT show suggestions yet
   };
   // Handler for removing an item (tag deletion)
   const removeItem = (item) => {
     setWasteItems(wasteItems.filter((i) => i !== item));
+    // Do NOT show suggestions yet
   };
 
-  // Placeholder submit handler, in future can trigger project suggestion engine
+  // PUBLIC_INTERFACE
+  /**
+   * Handles submit: fetch suggestions and display them after submission.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Placeholder: Connect with project suggestion engine here in the future
-    alert("Submitted: " + JSON.stringify(wasteItems));
+    // Only when Submit is clicked, generate and display suggestions
+    const ideas = getSuggestedProjects(wasteItems);
+    setSuggestions(ideas);
   };
 
   return (
@@ -131,7 +143,55 @@ function WasteItemInput({ wasteItems = [], setWasteItems }) {
           Submit
         </button>
       </form>
-      {/* No Wikipedia/description box shown; all outputs limited to craft/compost suggestions now */}
+      {/* Only display suggestions after submit */}
+      {suggestions && (
+        <div style={suggestionContainerStyle}>
+          <h3 style={{ margin: '12px 0 8px', color: "var(--primary-green)", fontSize: "1.15em" }}>
+            Craft Ideas For Your Waste Items:
+          </h3>
+          {suggestions.map((idea, idx) => (
+            <div
+              key={idea.title + idx}
+              style={{
+                background: "#fafdff",
+                borderLeft: "4px solid var(--secondary-green)",
+                borderRadius: 10,
+                marginBottom: 12,
+                padding: "13px 18px 7px 18px",
+                boxShadow: "0 2px 8px 0 rgba(80,160,90,0.07)",
+                maxWidth: 540,
+              }}
+            >
+              <div style={{ fontWeight: 600, fontSize: "1.09em", color: "var(--primary-green)" }}>
+                {idea.title}
+              </div>
+              <div style={{ color: "var(--text-secondary)", marginTop: 2, fontSize: "0.97em" }}>
+                {idea.description}
+              </div>
+              {Array.isArray(idea.relatedWasteItems) && (
+                <div style={{ marginTop: 6, display: "flex", gap: "7px", flexWrap: "wrap" }}>
+                  {idea.relatedWasteItems.map((mat, mi) => (
+                    <span
+                      key={mat + mi}
+                      style={{
+                        background: "var(--secondary-green)",
+                        color: "#fff",
+                        borderRadius: "14px",
+                        fontSize: "0.93em",
+                        padding: "2px 10px",
+                        display: "inline-block",
+                        marginLeft: mi ? 4 : 0,
+                      }}
+                    >
+                      {mat}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
@@ -209,6 +269,17 @@ const chipRemoveBtn = {
 const submitBtnStyle = {
   marginTop: 8,
   alignSelf: "flex-end"
+};
+
+// Style for the suggestions container displayed after submit
+const suggestionContainerStyle = {
+  width: "100%",
+  marginTop: 18,
+  marginBottom: 18,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  gap: "8px",
 };
 
 export default WasteItemInput;
