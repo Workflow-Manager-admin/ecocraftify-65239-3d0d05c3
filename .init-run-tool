@@ -1,0 +1,4 @@
+{
+    "command": "PORT=<port> BROWSER=none npm start",
+    "working_directory": "/home/kavia/workspace/code-generation/ecocraftify-65239-3d0d05c3/ecocraftify_frontend"
+}
