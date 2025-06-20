@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import MainContainer from './components/MainContainer';
 import WasteItemInput from './components/WasteItemInput';
-import ProjectSuggestions from './components/ProjectSuggestions';
 import UserProfile from './components/UserProfile';
 import AnimatedTree from './components/AnimatedTree';
 
@@ -62,7 +61,6 @@ function App() {
   const tabs = [
     { id: "home", label: "Home" },
     { id: "input", label: "Waste Item Input" },
-    { id: "suggest", label: "Project Suggestions" },
     { id: "profile", label: "User Profile" }
   ];
 
@@ -146,15 +144,7 @@ function App() {
               />
             </section>
           )}
-          {currentView === "suggest" && (
-            <section style={{marginTop:70}}>
-              <h2>Project Suggestions</h2>
-              <ProjectSuggestions
-                wasteItems={wasteItems}
-                onFavorite={handleAddFavorite}
-              />
-            </section>
-          )}
+          {/* Project Suggestions page removed */}
           {currentView === "profile" && (
             <section style={{marginTop:70}}>
               <h2>User Profile</h2>
