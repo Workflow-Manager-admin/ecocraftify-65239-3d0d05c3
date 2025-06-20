@@ -10,47 +10,15 @@ Injecting EditorRootWrapper import: ../.ve/EditorRootWrapper
 asset bundle.js 1.47 MiB [emitted] (name: main)
 asset index.html 1.98 KiB [emitted]
 runtime modules 27.5 KiB 14 modules
-cacheable modules 1.32 MiB
+cacheable modules 1.33 MiB
   modules by path ./node_modules/ 1.24 MiB 31 modules
-  modules by path ./src/ 67.4 KiB
-    modules by path ./src/components/*.js 43.3 KiB 6 modules
+  modules by path ./src/ 73.6 KiB
+    modules by path ./src/components/*.js 49 KiB 7 modules
     modules by path ./src/*.css 12.6 KiB 4 modules
-    modules by path ./src/*.js 7.33 KiB 2 modules
+    modules by path ./src/*.js 7.88 KiB 2 modules
     ./src/utils/suggestionEngine.js 4.17 KiB [built] [code generated]
   modules by path ./.ve/ 15.1 KiB
     modules by path ./.ve/*.js 10.6 KiB 2 modules
     modules by path ./.ve/*.css 2.93 KiB 2 modules
     ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1379 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.48 MiB
-  asset bundle.js 1.47 MiB [emitted] (name: main)
-  asset main.c9e4bda1c7ec8c85a83d.hot-update.js 11.3 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.c9e4bda1c7ec8c85a83d.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.48 MiB = bundle.js 1.47 MiB main.c9e4bda1c7ec8c85a83d.hot-update.js 11.3 KiB
-cached modules 1.31 MiB [cached] 48 modules
-runtime modules 27.5 KiB 14 modules
-./src/App.js 6.86 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 61 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.49 MiB
-  asset bundle.js 1.47 MiB [emitted] (name: main)
-  asset main.7c2244f38ff7bbdd4352.hot-update.js 18.9 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.7c2244f38ff7bbdd4352.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.49 MiB = bundle.js 1.47 MiB main.7c2244f38ff7bbdd4352.hot-update.js 18.9 KiB
-cached modules 1.31 MiB [cached] 48 modules
-runtime modules 27.5 KiB 14 modules
-javascript modules 12.6 KiB
-  ./src/App.js 6.91 KiB [built] [code generated]
-  ./src/components/SurpriseMe.js 5.67 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 61 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.49 MiB
-  asset bundle.js 1.47 MiB [emitted] (name: main)
-  asset main.14b2055bda938a26f2f9.hot-update.js 12.1 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.14b2055bda938a26f2f9.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.49 MiB = bundle.js 1.47 MiB main.14b2055bda938a26f2f9.hot-update.js 12.1 KiB
-cached modules 1.32 MiB [cached] 49 modules
-runtime modules 27.5 KiB 14 modules
-./src/App.js 7.36 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 45 ms
+webpack 5.99.9 compiled successfully in 1360 ms
