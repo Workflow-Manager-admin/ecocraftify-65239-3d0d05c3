@@ -11,9 +11,9 @@ asset bundle.js 1.44 MiB [emitted] (name: main)
 asset index.html 1.98 KiB [emitted]
 runtime modules 27.5 KiB 14 modules
 modules by path ./node_modules/ 1.24 MiB 31 modules
-modules by path ./src/ 46 KiB
+modules by path ./src/ 48.9 KiB
   modules by path ./src/*.css 10.8 KiB 4 modules
-  modules by path ./src/components/*.js 25 KiB 4 modules
+  modules by path ./src/components/*.js 27.9 KiB 4 modules
   modules by path ./src/*.js 6.73 KiB 2 modules
   ./src/utils/suggestionEngine.js 3.51 KiB [built] [code generated]
 modules by path ./.ve/ 15.1 KiB
@@ -22,14 +22,4 @@ modules by path ./.ve/ 15.1 KiB
     ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
     ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
   ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1419 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.45 MiB
-  asset bundle.js 1.44 MiB [emitted] (name: main)
-  asset main.9d1518f8711d144ab477.hot-update.js 10.4 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.9d1518f8711d144ab477.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.45 MiB = bundle.js 1.44 MiB main.9d1518f8711d144ab477.hot-update.js 10.4 KiB
-cached modules 1.29 MiB [cached] 46 modules
-runtime modules 27.5 KiB 14 modules
-./src/components/ProjectSuggestions.js 7.09 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 139 ms
+webpack 5.99.9 compiled successfully in 1408 ms
