@@ -53,6 +53,20 @@ function MyCreations({ creations: propCreations }) {
     );
   }
 
+  // --- Dummy handlers for entries actions ---
+  function handleRegenerate(idx) {
+    window.alert("Idea " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " would be re-generated! (TODO: implement suggestion engine integration)");
+  }
+  function handleEdit(idx) {
+    window.alert("Edit for idea " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " (Feature coming soon)");
+  }
+  function handleDone(idx) {
+    window.alert("Marked as done: " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " (Feature coming soon)");
+  }
+  function handleShare(idx) {
+    window.alert("Sharing idea: " + (creations[idx].ideaText ? `"${creations[idx].ideaText}"` : "#" + (idx+1)) + " (Feature coming soon)");
+  }
+
   return (
     <section style={containerStyle}>
       <h2 style={titleStyle}>My Creations</h2>
@@ -91,15 +105,34 @@ function MyCreations({ creations: propCreations }) {
                   })}
                 </div>
               )}
-              {/* Options area: for edit, delete, share, etc (stub for future) */}
+              {/* Options area: Show full set of action buttons with handlers */}
               <div style={optionsStyle}>
-                <button style={actionBtnStyle} title="Edit (coming soon)" disabled>
+                <button
+                  style={{ ...actionBtnStyle, background: "rgba(76,175,80,0.14)", cursor: "pointer", opacity: 1 }}
+                  title="Re-generate suggestion"
+                  onClick={() => handleRegenerate(idx)}
+                >
+                  ♻️ Re-gen
+                </button>
+                <button
+                  style={{ ...actionBtnStyle, background: "rgba(255,193,7,0.08)", cursor: "pointer", opacity: 1 }}
+                  title="Edit idea"
+                  onClick={() => handleEdit(idx)}
+                >
                   ✏️ Edit
                 </button>
-                <button style={actionBtnStyle} title="Delete (coming soon)" disabled>
-                  🗑️ Delete
+                <button
+                  style={{ ...actionBtnStyle, background: "rgba(74,175,80,0.07)", cursor: "pointer", opacity: 1 }}
+                  title="Mark as done"
+                  onClick={() => handleDone(idx)}
+                >
+                  ✅ Done
                 </button>
-                <button style={actionBtnStyle} title="Share (coming soon)" disabled>
+                <button
+                  style={{ ...actionBtnStyle, background: "rgba(64,150,255,0.08)", cursor: "pointer", opacity: 1 }}
+                  title="Share idea"
+                  onClick={() => handleShare(idx)}
+                >
                   📤 Share
                 </button>
               </div>
