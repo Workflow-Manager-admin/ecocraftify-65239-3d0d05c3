@@ -1,42 +1,97 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 /**
  * UserProfile Component
  *
- * Displays the user's profile information, favorite projects, and project history.
- * All sections are scaffolded with placeholder content, ready for future integration.
+ * Editable user profile form. Allows update and persistence of user details (name, email, avatar, etc.).
+ * Uses localStorage for persistence. Also displays favorite projects/history as stubs.
  */
 
 // PUBLIC_INTERFACE
 function UserProfile() {
-  // Placeholder for user profile data (in the future use localStorage/api/local state)
-  const userStub = {
-    name: "EcoCrafter",
+  // Fields to be edited
+  const defaultProfile = {
+    name: "TreasureMaker",
+    email: "",
     avatarUrl: "",
-    joinDate: "2024-06-01",
+    joinDate: new Date().toISOString().substring(0, 10),
+    favorites: [],
+    history: [],
   };
 
-  // Dicebear avatar URL - deterministic per user
-  const dicebearAvatarUrl = `https://avatars.dicebear.com/api/bottts/${encodeURIComponent(
-    userStub.name
-  )}.svg`;
+  // Initialization (read from localStorage)
+  const [profile, setProfile] = useState(() => {
+    const saved = window.localStorage.getItem("trash2treasureUser");
+    try {
+      return saved ? { ...defaultProfile, ...JSON.parse(saved) } : defaultProfile;
+    } catch {
+      return { ...defaultProfile };
+    }
+  });
 
-  // Placeholder arrays – to be fetched from localStorage/state/backend in implementation phase
-  const favoritesStub = [
-    // { id: 101, name: "Tin Can Lanterns" }, ...
-  ];
-  const historyStub = [
-    // { id: 201, project: "Bottle Cap Mosaic", date: "2024-06-04" }, ...
-  ];
+  // Editable field state (local-only until "Save" is clicked)
+  const [editFields, setEditFields] = useState(() => ({
+    name: profile.name || "",
+    email: profile.email || "",
+    avatarUrl: profile.avatarUrl || "",
+  }));
+  // Feedback message after save
+  const [status, setStatus] = useState("");
 
+  // Keep editFields in sync if profile changes from localStorage/etc.
+  useEffect(() => {
+    setEditFields({
+      name: profile.name || "",
+      email: profile.email || "",
+      avatarUrl: profile.avatarUrl || "",
+    });
+  }, [profile]);
+
+  // Save handler: persist to localStorage and state, show OK msg
+  // PUBLIC_INTERFACE
+  function handleSave(e) {
+    e.preventDefault();
+    const updatedProfile = {
+      ...profile,
+      name: editFields.name.trim() || defaultProfile.name,
+      email: editFields.email.trim(),
+      avatarUrl: editFields.avatarUrl.trim(),
+    };
+    setProfile(updatedProfile);
+    window.localStorage.setItem("trash2treasureUser", JSON.stringify(updatedProfile));
+    setStatus("Profile saved!");
+    setTimeout(() => setStatus(""), 1700);
+  }
+
+  // Input change
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setEditFields(fields => ({ ...fields, [name]: value }));
+  }
+
+  // Live avatar preview (use avatarUrl if present, else generate by name)
+  const avatarUrl =
+    editFields.avatarUrl && editFields.avatarUrl.length > 6
+      ? editFields.avatarUrl
+      : `https://avatars.dicebear.com/api/bottts-neutral/${encodeURIComponent(
+          editFields.name || "TreasureMaker"
+        )}.svg`;
+
+  // Favorites / History (use arrays from profile; fall back to empty)
+  const favorites = profile.favorites || [];
+  const history = profile.history || [];
+  
   return (
-    <div style={profileOuterStyle}>
-      {/* User "avatar" and name section */}
+    <form
+      style={profileOuterStyle}
+      autoComplete="off"
+      onSubmit={handleSave}
+    >
+      {/* User avatar and editable fields */}
       <div style={headerStyle}>
         <div style={avatarStubStyle}>
-          {/* PUBLIC_INTERFACE: Render Dicebear SVG avatar for user */}
           <img
-            src={dicebearAvatarUrl}
+            src={avatarUrl}
             alt="User avatar"
             style={{
               width: 38,
@@ -51,25 +106,132 @@ function UserProfile() {
           />
         </div>
         <div>
-          <div style={displayNameStyle}>{userStub.name}</div>
+          <label
+            htmlFor="profile-name"
+            style={{
+              ...displayNameStyle,
+              display: "block",
+              paddingBottom: 2,
+            }}
+          >
+            Name:
+          </label>
+          <input
+            type="text"
+            id="profile-name"
+            name="name"
+            value={editFields.name}
+            minLength={2}
+            maxLength={26}
+            onChange={handleChange}
+            style={{
+              fontSize: "1.05em",
+              fontWeight: 500,
+              border: "1px solid var(--border-color)",
+              borderRadius: 6,
+              padding: "5px 10px",
+              marginBottom: 2,
+              color: "var(--primary-green)",
+              width: "98%",
+              maxWidth: 240,
+            }}
+            required
+            placeholder="Your Name"
+            autoComplete="off"
+          />
           <div style={secondaryTextStyle}>
-            Joined: {userStub.joinDate}
+            Joined: {profile.joinDate}
           </div>
         </div>
       </div>
-
+      {/* Email field */}
+      <div style={{ marginBottom: 12, marginLeft: 59, maxWidth: 260}}>
+        <label htmlFor="profile-email" style={{ display: "block", color: "var(--text-secondary)", fontWeight: 500, fontSize: "1em", paddingBottom: 3 }}>
+          Email:
+        </label>
+        <input
+          id="profile-email"
+          name="email"
+          type="email"
+          value={editFields.email}
+          onChange={handleChange}
+          style={{
+            fontSize: "0.97em",
+            border: "1px solid var(--border-color)",
+            borderRadius: 6,
+            padding: "6px 10px",
+            marginBottom: 2,
+            width: "99%",
+            maxWidth: 240,
+          }}
+          placeholder="user@email.com"
+          autoComplete="off"
+        />
+      </div>
+      {/* AvatarUrl field (optional) */}
+      <div style={{ marginBottom: 12, marginLeft: 59, maxWidth: 260}}>
+        <label htmlFor="profile-avatarUrl" style={{ display: "block", color: "var(--text-secondary)", fontWeight: 500, fontSize: "1em", paddingBottom: 3 }}>
+          Avatar Image URL:
+        </label>
+        <input
+          id="profile-avatarUrl"
+          name="avatarUrl"
+          type="url"
+          value={editFields.avatarUrl}
+          onChange={handleChange}
+          style={{
+            fontSize: "0.97em",
+            border: "1px solid var(--border-color)",
+            borderRadius: 6,
+            padding: "6px 10px",
+            marginBottom: 2,
+            width: "99%",
+            maxWidth: 300,
+          }}
+          placeholder="Paste image URL or leave blank"
+          autoComplete="off"
+        />
+      </div>
+      <button
+        type="submit"
+        className="btn btn-large"
+        style={{
+          marginLeft: 59,
+          background: "var(--primary-green)",
+          color: "#fff",
+          fontWeight: 600,
+          fontSize: "1.08em",
+          padding: "8px 26px",
+          border: "none",
+          borderRadius: 8,
+          marginTop: 3,
+          marginBottom: 8,
+          alignSelf: "flex-start"
+        }}
+      >
+        Save
+      </button>
+      {status && (
+        <span
+          style={{
+            color: "var(--primary-green)",
+            marginLeft: 12,
+            fontWeight: 600,
+          }}
+        >
+          {status}
+        </span>
+      )}
       {/* Divider */}
-      <div style={dividerStyle}></div>
-
+      <div style={dividerStyle} />
       {/* Favorites Section */}
       <div>
         <div style={sectionTitleStyle}>Favorite Projects</div>
         <ul style={listStyle}>
-          {favoritesStub.length > 0 ? (
-            favoritesStub.map((fav) => (
-              <li key={fav.id} style={itemStyle}>
-                {fav.name}
-                {/* Placeholder: Add/remove favorite functionality will go here */}
+          {favorites.length > 0 ? (
+            favorites.map((fav, idx) => (
+              <li key={fav.id || fav.name || idx} style={itemStyle}>
+                {fav.name || fav.title || "[Unnamed]"}
               </li>
             ))
           ) : (
@@ -79,18 +241,19 @@ function UserProfile() {
           )}
         </ul>
       </div>
-
       {/* Divider */}
       <div style={dividerStyle}></div>
-      
       {/* Project History Section */}
       <div>
         <div style={sectionTitleStyle}>Project History</div>
         <ul style={listStyle}>
-          {historyStub.length > 0 ? (
-            historyStub.map((h) => (
-              <li key={h.id} style={itemStyle}>
-                {h.project} <span style={historyDateStyle}>({h.date})</span>
+          {history.length > 0 ? (
+            history.map((h, idx) => (
+              <li key={h.id || idx} style={itemStyle}>
+                {(h.project || h.title || "[Unnamed]")}{" "}
+                {h.date && (
+                  <span style={historyDateStyle}>({h.date})</span>
+                )}
               </li>
             ))
           ) : (
@@ -100,16 +263,7 @@ function UserProfile() {
           )}
         </ul>
       </div>
-
-      {/* Placeholder: Stubs for useEffect, local state, and localStorage integration */}
-      {/* 
-      // Example for future:
-      // useEffect(() => {
-      //   const savedFavorites = window.localStorage.getItem("favoriteProjects");
-      //   // setFavorites(JSON.parse(savedFavorites) || []);
-      // }, []);
-      */}
-    </div>
+    </form>
   );
 }
 
