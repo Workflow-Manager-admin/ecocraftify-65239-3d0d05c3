@@ -5,6 +5,7 @@ import WasteItemInput from './components/WasteItemInput';
 import UserProfile from './components/UserProfile';
 import AnimatedTree from './components/AnimatedTree';
 import MyCreations from './components/MyCreations';
+import EcoTips from './components/EcoTips';
 import SurpriseMe from './components/SurpriseMe';
 import { CreationsProvider } from './components/CreationsContext';
 
@@ -65,6 +66,7 @@ function App() {
     { id: "home", label: "Home" },
     { id: "input", label: "Waste Item Input" },
     { id: "creations", label: "My Creations" },
+    { id: "eco-tips", label: "Eco Tips / Learn" },
     { id: "surprise", label: "Surprise Me" },
     { id: "profile", label: "User Profile" }
   ];
@@ -151,6 +153,16 @@ function App() {
               <section style={{marginTop:70}}>
                 <h2>User Profile</h2>
                 <UserProfile />
+              </section>
+            )}
+            {currentView === "eco-tips" && (
+              <section style={{marginTop:70, background: "none", boxShadow: "none", border: "none", padding: 0, minHeight: 440}}>
+                {/* EcoTips is already internally themed and containerized */}
+                {/*
+                  We import EcoTips below for live, educational green tips/facts/etc.
+                  Not wrapped in an extra container to avoid double padding.
+                */}
+                {React.createElement(require('./components/EcoTips').default)}
               </section>
             )}
             {currentView === "surprise" && (
