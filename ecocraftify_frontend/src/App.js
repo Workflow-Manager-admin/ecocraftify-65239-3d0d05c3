@@ -4,6 +4,7 @@ import MainContainer from './components/MainContainer';
 import WasteItemInput from './components/WasteItemInput';
 import UserProfile from './components/UserProfile';
 import AnimatedTree from './components/AnimatedTree';
+import LeafFallEffect from './components/LeafFallEffect';
 import MyCreations from './components/MyCreations';
 import EcoTips from './components/EcoTips';
 import { CreationsProvider } from './components/CreationsContext';
@@ -94,6 +95,8 @@ function App() {
   return (
     <CreationsProvider>
       <div className="app" style={{ position: "relative", minHeight: "100vh" }}>
+        {/* --- GLOBAL flowing leaf fall animation, always-on, non-intrusive, behind content --- */}
+        <LeafFallEffect />
         {/* AnimatedTree as sidebar background, all core pages */}
         <AnimatedTree style={{
           position: "fixed",

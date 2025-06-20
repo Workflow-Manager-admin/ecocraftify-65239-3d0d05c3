@@ -26,6 +26,8 @@ body {
   background: var(--background);
   /* Ensure main content is pushed below navbar */
   padding-top: 72px; /* matches navbar height (16px + font size - adjust as necessary) */
+  position: relative;
+  z-index: 2; /* above falling leaves, but below nav/side overlays */
 }
 
 .navbar {
