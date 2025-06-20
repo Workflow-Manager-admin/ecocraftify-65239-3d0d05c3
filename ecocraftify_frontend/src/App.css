@@ -24,6 +24,8 @@ body {
   display: flex;
   flex-direction: column;
   background: var(--background);
+  /* Ensure main content is pushed below navbar */
+  padding-top: 72px; /* matches navbar height (16px + font size - adjust as necessary) */
 }
 
 .navbar {
