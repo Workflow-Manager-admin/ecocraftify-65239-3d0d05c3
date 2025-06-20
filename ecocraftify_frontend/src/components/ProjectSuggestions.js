@@ -93,7 +93,26 @@ function ProjectSuggestions({ wasteItems = [], onFavorite }) {
       )}
       {suggestedProjects.map((proj, projIdx) => (
         <div key={proj.title + projIdx} className="project-card-ecocraftify" style={cardStyle}>
-          <h3 style={projectTitleStyle}>{proj.title}</h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 13, marginBottom: 3 }}>
+            {/* PUBLIC_INTERFACE: Dicebear avatar using project title */}
+            <img
+              src={`https://avatars.dicebear.com/api/bottts/${encodeURIComponent(proj.title)}.svg`}
+              alt="Project avatar"
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                background: "#f5ffef",
+                flexShrink: 0,
+                border: "2px solid var(--primary-green)",
+                marginRight: 4,
+                objectFit: "cover",
+              }}
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+            <h3 style={{ ...projectTitleStyle, marginBottom: 0 }}>{proj.title}</h3>
+          </div>
           <div style={materialListStyle}>
             <span style={materialsLabelStyle}>Materials:</span>
             {/* Show related waste/materials */}

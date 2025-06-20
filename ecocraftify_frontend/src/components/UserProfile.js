@@ -5,8 +5,6 @@ import React from "react";
  *
  * Displays the user's profile information, favorite projects, and project history.
  * All sections are scaffolded with placeholder content, ready for future integration.
- * Stubs are provided for local state/localStorage features to be implemented later.
- * Basic, modern styling is used with clear separation for usability.
  */
 
 // PUBLIC_INTERFACE
@@ -14,9 +12,14 @@ function UserProfile() {
   // Placeholder for user profile data (in the future use localStorage/api/local state)
   const userStub = {
     name: "EcoCrafter",
-    avatarUrl: "", // Could add an avatar feature later
+    avatarUrl: "",
     joinDate: "2024-06-01",
   };
+
+  // Dicebear avatar URL - deterministic per user
+  const dicebearAvatarUrl = `https://avatars.dicebear.com/api/bottts/${encodeURIComponent(
+    userStub.name
+  )}.svg`;
 
   // Placeholder arrays – to be fetched from localStorage/state/backend in implementation phase
   const favoritesStub = [
@@ -31,10 +34,21 @@ function UserProfile() {
       {/* User "avatar" and name section */}
       <div style={headerStyle}>
         <div style={avatarStubStyle}>
-          {/* Could replace with user photo/avatar */}
-          <span role="img" aria-label="profile" style={avatarIconStyle}>
-            🧑‍🎨
-          </span>
+          {/* PUBLIC_INTERFACE: Render Dicebear SVG avatar for user */}
+          <img
+            src={dicebearAvatarUrl}
+            alt="User avatar"
+            style={{
+              width: 38,
+              height: 38,
+              borderRadius: "50%",
+              background: "#f5ffef",
+              display: "block",
+              objectFit: "cover",
+            }}
+            loading="lazy"
+            referrerPolicy="no-referrer"
+          />
         </div>
         <div>
           <div style={displayNameStyle}>{userStub.name}</div>
