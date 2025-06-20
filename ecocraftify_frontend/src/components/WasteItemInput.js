@@ -4,12 +4,15 @@ import "../App.css";
 /**
  * WasteItemInput:
  * Lets users input or select types of household waste materials.
- * Prepares collected input for integration with the project suggestion engine.
+ * Controlled by container's wasteItems/setWasteItems state (not managed internally).
  * Features: Dropdown selection for common items, tag entry, and free text.
+ * 
+ * Props:
+ *   wasteItems: array<string>, the list of currently selected waste items.
+ *   setWasteItems: function(newItems: array<string>), updates wasteItems state in parent.
  */
 // PUBLIC_INTERFACE
-function WasteItemInput() {
-  // Preset/common waste item types (extendable)
+function WasteItemInput({ wasteItems = [], setWasteItems }) {
   const COMMON_ITEMS = [
     "Plastic Bottles",
     "Glass Jars",
@@ -20,39 +23,35 @@ function WasteItemInput() {
     "Bottle Caps",
     "Old Magazines",
     "CDs/DVDs",
-    "Other"
+    "Other",
   ];
-
   const [dropdownValue, setDropdownValue] = useState("");
   const [customInput, setCustomInput] = useState("");
-  const [wasteItems, setWasteItems] = useState([]);
 
   // Handler for dropdown/selection change
   const handleDropdownChange = (e) => {
     setDropdownValue(e.target.value);
   };
-
   // Handler for free text input change
   const handleCustomInputChange = (e) => {
     setCustomInput(e.target.value);
   };
-
   // Handler for adding an item (from dropdown or text)
   const handleAddItem = (e) => {
     e.preventDefault();
-    let valueToAdd = dropdownValue === "Other" ? customInput.trim() : dropdownValue;
+    let valueToAdd =
+      dropdownValue === "Other" ? customInput.trim() : dropdownValue;
     if (!valueToAdd || wasteItems.includes(valueToAdd)) return;
     setWasteItems([...wasteItems, valueToAdd]);
     setDropdownValue("");
     setCustomInput("");
   };
-
   // Handler for removing an item (tag deletion)
   const removeItem = (item) => {
-    setWasteItems(wasteItems.filter(i => i !== item));
+    setWasteItems(wasteItems.filter((i) => i !== item));
   };
 
-  // Placeholder submit handler for future integration with project suggestion logic
+  // Placeholder submit handler, in future can trigger project suggestion engine
   const handleSubmit = (e) => {
     e.preventDefault();
     // Placeholder: Connect with project suggestion engine here in the future
@@ -60,8 +59,15 @@ function WasteItemInput() {
   };
 
   return (
-    <form className="waste-item-input-form" onSubmit={handleSubmit} autoComplete="off" style={formStyle}>
-      <label htmlFor="waste-dropdown" style={labelStyle}>Add Waste Type:</label>
+    <form
+      className="waste-item-input-form"
+      onSubmit={handleSubmit}
+      autoComplete="off"
+      style={formStyle}
+    >
+      <label htmlFor="waste-dropdown" style={labelStyle}>
+        Add Waste Type:
+      </label>
       <div style={{ display: "flex", gap: "8px", alignItems: "flex-end" }}>
         <select
           id="waste-dropdown"
@@ -71,7 +77,9 @@ function WasteItemInput() {
         >
           <option value="">Select...</option>
           {COMMON_ITEMS.map((item) => (
-            <option value={item} key={item}>{item}</option>
+            <option value={item} key={item}>
+              {item}
+            </option>
           ))}
         </select>
         {dropdownValue === "Other" && (
@@ -107,7 +115,9 @@ function WasteItemInput() {
                 type="button"
                 aria-label={`Remove ${item}`}
                 style={chipRemoveBtn}
-              >×</button>
+              >
+                ×
+              </button>
             </span>
           ))}
       </div>

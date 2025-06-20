@@ -10,9 +10,18 @@ import "../App.css";
  *   wasteItems: Array of strings (waste material names), OPTIONAL.
  *     Will later be used for dynamic suggestions.
  */
+/**
+ * ProjectSuggestions Component
+ * Displays a list of eco-friendly DIY project ideas based on provided waste items.
+ * Reacts to `wasteItems` prop for suggestions.
+ * 
+ * Props:
+ *   wasteItems: Array of strings (waste material names)
+ *   onFavorite: function(project) (optional) - called to favorite a project.
+ */
 // PUBLIC_INTERFACE
-function ProjectSuggestions({ wasteItems = [] }) {
-  // Placeholder: Simulated/fake suggested projects for demonstration
+function ProjectSuggestions({ wasteItems = [], onFavorite }) {
+  // Simulated/fake suggested projects for demonstration
   const stubProjects = [
     {
       id: 1,
@@ -37,11 +46,21 @@ function ProjectSuggestions({ wasteItems = [] }) {
     },
   ];
 
-  // Later: Replace or filter project cards using 'wasteItems' prop.
-  // For now just display the stubs.
+  // Optionally filter/favor projects based on wasteItems for user interactivity
+  const filteredProjects =
+    Array.isArray(wasteItems) && wasteItems.length
+      ? stubProjects.filter((p) =>
+          p.materials.some((m) =>
+            wasteItems.some(
+              (wi) => wi.toLowerCase().includes(m.toLowerCase()) || m.toLowerCase().includes(wi.toLowerCase())
+            )
+          )
+        )
+      : stubProjects;
+
   return (
     <div className="project-suggestions-list" style={listStyle}>
-      {stubProjects.map((proj) => (
+      {filteredProjects.map((proj) => (
         <div key={proj.id} className="project-card-ecocraftify" style={cardStyle}>
           <h3 style={projectTitleStyle}>{proj.title}</h3>
           <div style={materialListStyle}>
@@ -51,10 +70,27 @@ function ProjectSuggestions({ wasteItems = [] }) {
             ))}
           </div>
           <p style={descStyle}>{proj.description}</p>
-          {/* Placeholder for future: Favorite/Save button, View details, etc. */}
+          {/* Example: In the future, clicking heart will favorite */}
+          {onFavorite && (
+            <button
+              className="btn"
+              style={{
+                background: "var(--accent-yellow)",
+                color: "#514200",
+                marginTop: "7px",
+                fontSize: "0.94em",
+                fontWeight: 700,
+              }}
+              onClick={() => onFavorite(proj)}
+              aria-label={`Favorite ${proj.title}`}
+              type="button"
+            >
+              ★ Favorite
+            </button>
+          )}
         </div>
       ))}
-      {stubProjects.length === 0 && (
+      {filteredProjects.length === 0 && (
         <div style={noSuggestionsStyle}>
           <em>No project ideas to suggest yet. Add some waste items!</em>
         </div>

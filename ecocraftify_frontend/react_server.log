@@ -23,4 +23,68 @@ modules by path ./.ve/ 15.1 KiB
     ./.ve/EditorOverlay.css 2.25 KiB [built] [code generated]
     ./node_modules/css-loader/dist/cjs.js!./.ve/EditorOverlay.css 697 bytes [built] [code generated]
   ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1281 ms
+webpack 5.99.9 compiled successfully in 1275 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.4 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.3a6336e092cf01b61fb0.hot-update.js 6.06 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.3a6336e092cf01b61fb0.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.4 MiB = bundle.js 1.4 MiB main.3a6336e092cf01b61fb0.hot-update.js 6.06 KiB
+cached modules 1.26 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+./node_modules/css-loader/dist/cjs.js!./src/App.css 3.53 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 65 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.4 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.470ae41a18124d2421fc.hot-update.js 6.39 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.470ae41a18124d2421fc.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.4 MiB = bundle.js 1.4 MiB main.470ae41a18124d2421fc.hot-update.js 6.39 KiB
+cached modules 1.26 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+./node_modules/css-loader/dist/cjs.js!./src/App.css 3.85 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 39 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.4 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.3936a0c2c3a9ea4806f3.hot-update.js 6.42 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.3936a0c2c3a9ea4806f3.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.4 MiB = bundle.js 1.4 MiB main.3936a0c2c3a9ea4806f3.hot-update.js 6.42 KiB
+cached modules 1.26 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+./node_modules/css-loader/dist/cjs.js!./src/App.css 3.88 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 36 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.41 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.83170bcf9bb6b05842d7.hot-update.js 7.23 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.83170bcf9bb6b05842d7.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.41 MiB = bundle.js 1.4 MiB main.83170bcf9bb6b05842d7.hot-update.js 7.23 KiB
+cached modules 1.26 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+./node_modules/css-loader/dist/cjs.js!./src/App.css 4.66 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 32 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.41 MiB
+  asset bundle.js 1.4 MiB [emitted] (name: main)
+  asset main.7519bb892381b76d62a0.hot-update.js 8.06 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.7519bb892381b76d62a0.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.41 MiB = bundle.js 1.4 MiB main.7519bb892381b76d62a0.hot-update.js 8.06 KiB
+cached modules 1.26 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+./node_modules/css-loader/dist/cjs.js!./src/App.css 5.45 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 46 ms
+assets by status 1.98 KiB [cached] 1 asset
+assets by path *.js 1.46 MiB
+  asset bundle.js 1.43 MiB [emitted] (name: main)
+  asset main.c9ec2a84c69a65ca1c8e.hot-update.js 34.1 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.c9ec2a84c69a65ca1c8e.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.46 MiB = bundle.js 1.43 MiB main.c9ec2a84c69a65ca1c8e.hot-update.js 34.1 KiB
+cached modules 1.27 MiB [cached] 42 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 23.7 KiB
+  ./src/components/MainContainer.js 6.24 KiB [built] [code generated]
+  ./src/components/WasteItemInput.js 5.91 KiB [built] [code generated]
+  ./src/components/ProjectSuggestions.js 5.33 KiB [built] [code generated]
+  ./src/components/UserProfile.js 6.24 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 131 ms

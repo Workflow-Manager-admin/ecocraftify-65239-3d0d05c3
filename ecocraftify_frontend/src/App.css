@@ -1,21 +1,19 @@
 :root {
-  --base-light: #00ffff;
-  --base-dark: #00008b;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-
-  /* Main EcoCraftify layout colors (for future use) */
   --primary-green: #4CAF50;
   --secondary-green: #8BC34A;
   --accent-yellow: #FFC107;
+  --background: #FFFFFF;
+  --text-color: #2a3921;
+  --text-secondary: #547d40;
+  --border-color: #e5f6df;
+  --navbar-bg: #4CAF50;
+  --plant-green: #45b257;
 }
-
 
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-color: var(--base-dark);
+  background-color: var(--background);
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,32 +23,36 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--background);
 }
 
 .navbar {
-  background-color: var(--base-dark);
-  padding: 16px;
+  background-color: var(--navbar-bg);
+  padding: 16px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--primary-green);
   position: fixed;
   top: 0;
   width: 100%;
   box-sizing: border-box;
   z-index: 100;
+  color: #fff;
+  box-shadow: 0 1px 6px rgba(67, 175, 80, 0.05);
 }
 
 .logo {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.38rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  color: #fff;
 }
 
 .logo-symbol {
-  color: var(--base-light);
+  color: var(--accent-yellow);
 }
 
 .container {
@@ -72,7 +74,7 @@ body {
 }
 
 .subtitle {
-  color: var(--base-light);
+  color: var(--secondary-green);
   font-weight: 500;
   font-size: 1.1rem;
 }
@@ -82,6 +84,7 @@ body {
   font-weight: 600;
   line-height: 1.2;
   margin: 0;
+  color: var(--primary-green);
 }
 
 .description {
@@ -93,47 +96,59 @@ body {
 }
 
 .btn {
-  background-color: var(--base-light);
-  color: white;
+  background-color: var(--primary-green);
+  color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
+  border-radius: 5px;
+  padding: 10px 22px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(67, 175, 80, 0.09);
 }
-
 .btn:hover {
-  background-color: #7691ff;
+  background-color: var(--secondary-green);
+  color: #fff;
+  box-shadow: 0 4px 14px 0 rgba(113, 211, 83, 0.13);
 }
 
 .btn-large {
-  padding: 12px 24px;
-  font-size: 1.1rem;
+  padding: 12px 28px;
+  font-size: 1.09rem;
+  font-weight: 600;
 }
 
-/* --- EcoCraftify Layout Styles --- */
+h2, .title {
+  color: var(--primary-green);
+}
+
+section {
+  background-color: #f5ffef;
+}
+
 .main-container-ecocraftify {
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 26px;
   margin-top: 48px;
   justify-content: stretch;
   align-items: stretch;
 }
 
 .main-container-ecocraftify > section {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  background: #f5ffef;
+  border: 1.6px solid var(--border-color);
+  border-radius: 18px;
   flex: 1 1 0;
   min-width: 220px;
-  padding: 28px 18px 28px 18px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.03);
+  padding: 30px 24px 30px 24px;
+  box-shadow: 0 4px 16px 0 rgba(67,175,80,0.06);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  position: relative;
+  overflow: visible;
 }
 
 .main-container-ecocraftify > section:not(:last-child) {
@@ -156,6 +171,38 @@ body {
   opacity: 0.86;
 }
 
+/* --- Animated Plant SVG Decorations --- */
+.plant-animated-sprout {
+  position: absolute;
+  left: -38px;
+  top: -32px;
+  width: 76px;
+  z-index: 2;
+  animation: plantBounce 3.0s infinite alternate cubic-bezier(0.61, 0.18, 0.17, 0.99);
+  opacity: 0.84;
+  pointer-events: none;
+}
+.plant-animated-leaf {
+  position: absolute;
+  right: -26px;
+  bottom: -28px;
+  width: 52px;
+  z-index: 2;
+  animation: plantSway 2.7s infinite alternate;
+  opacity: 0.82;
+  pointer-events: none;
+}
+@keyframes plantBounce {
+  0%   { transform: translateY(0) rotate(-6deg);}
+  58%  { transform: translateY(-13px) rotate(-2deg);}
+  100% { transform: translateY(-9px) rotate(6deg);}
+}
+@keyframes plantSway {
+  0%   { transform: rotate(-8deg);}
+  24%  { transform: rotate(1deg);}
+  100% { transform: rotate(13deg);}
+}
+
 @media (max-width: 900px) {
   .main-container-ecocraftify {
     flex-direction: column;
@@ -168,3 +215,44 @@ body {
   }
 }
 
+/* WasteItemInput chips and controls (preserved from before, but adapted for green theme) */
+.waste-item-input-form select,
+.waste-item-input-form input[type="text"] {
+  border: 1.1px solid var(--border-color);
+  background: #fff;
+}
+
+.waste-chip {
+  background: var(--secondary-green);
+  border-radius: 20px;
+  color: #fff;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  font-size: 0.98rem;
+  font-weight: 400;
+  gap: 6px;
+  margin-top: 3px;
+}
+
+.waste-chip button {
+  background: none;
+  color: #fff;
+  border: none;
+  font-size: 1.1em;
+  margin-left: 4px;
+  cursor: pointer;
+  padding: 0 3px;
+}
+
+/* ProjectSuggestions cards, etc. retained for style consistency */
+.project-card-ecocraftify {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: #fafdff;
+  box-shadow: 0 1px 4px 0 rgba(32,80,60,0.06);
+  padding: 18px 18px 13px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
