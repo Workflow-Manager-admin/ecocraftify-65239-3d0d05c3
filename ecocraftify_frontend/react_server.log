@@ -7,38 +7,28 @@
 <i> [webpack-dev-server] On Your Network (IPv4): http://172.17.0.2:3000/
 <i> [webpack-dev-server] Content not from webpack is served from './public' directory
 Injecting EditorRootWrapper import: ../.ve/EditorRootWrapper
-asset bundle.js 1.49 MiB [emitted] (name: main)
+asset bundle.js 1.5 MiB [emitted] (name: main)
 asset index.html 1.98 KiB [emitted]
 runtime modules 27.5 KiB 14 modules
-cacheable modules 1.34 MiB
+cacheable modules 1.35 MiB
   modules by path ./node_modules/ 1.24 MiB 31 modules
-  modules by path ./src/ 90.6 KiB
-    modules by path ./src/components/*.js 65.6 KiB 8 modules
-    modules by path ./src/*.css 12.8 KiB 4 modules
+  modules by path ./src/ 94.7 KiB
+    modules by path ./src/components/*.js 69.4 KiB 8 modules
+    modules by path ./src/*.css 13.1 KiB 4 modules
     modules by path ./src/*.js 8 KiB 2 modules
     ./src/utils/suggestionEngine.js 4.17 KiB [built] [code generated]
   modules by path ./.ve/ 15.1 KiB
     modules by path ./.ve/*.js 10.6 KiB 2 modules
     modules by path ./.ve/*.css 2.93 KiB 2 modules
     ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 1432 ms
+webpack 5.99.9 compiled successfully in 1435 ms
 assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.51 MiB
-  asset bundle.js 1.5 MiB [emitted] (name: main)
-  asset main.019ad595a5ef7ce35c94.hot-update.js 12 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.019ad595a5ef7ce35c94.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.51 MiB = bundle.js 1.5 MiB main.019ad595a5ef7ce35c94.hot-update.js 12 KiB
+assets by path *.js 1.54 MiB
+  asset bundle.js 1.51 MiB [emitted] (name: main)
+  asset main.6e62d5d577626d8745c7.hot-update.js 29.4 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.6e62d5d577626d8745c7.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 1.54 MiB = bundle.js 1.51 MiB main.6e62d5d577626d8745c7.hot-update.js 29.4 KiB
 cached modules 1.34 MiB [cached] 50 modules
 runtime modules 27.5 KiB 14 modules
-./src/components/LeafFallEffect.js 8.99 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 148 ms
-assets by status 1.98 KiB [cached] 1 asset
-assets by path *.js 1.51 MiB
-  asset bundle.js 1.5 MiB [emitted] (name: main)
-  asset main.8ff0dfa00a76e9e7f347.hot-update.js 10.5 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.8ff0dfa00a76e9e7f347.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 1.51 MiB = bundle.js 1.5 MiB main.8ff0dfa00a76e9e7f347.hot-update.js 10.5 KiB
-cached modules 1.34 MiB [cached] 50 modules
-runtime modules 27.5 KiB 14 modules
-./node_modules/css-loader/dist/cjs.js!./src/App.css 7.82 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 44 ms
+./src/components/EcoTips.js 22.9 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 182 ms
